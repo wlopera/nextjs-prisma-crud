@@ -8,6 +8,9 @@ const loadTasks = async () => {
   return await prisma.task.findMany();
 };
 
+export const revalidate = 30; // Forzar consulta luego de 60seg de cambio
+export const dynamic = "force-dynamic"; // Forzar consulta siempre que actualice - no cache - Esto por ser producción.
+
 const HomePage = async () => {
   const tasks = await loadTasks();
 
